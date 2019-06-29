@@ -1,4 +1,4 @@
-import requests, os
+import requests, os, urllib
 from bs4 import BeautifulSoup
 from time import sleep
 from dotenv import load_dotenv, find_dotenv
@@ -34,7 +34,12 @@ def main():
             urls.append(url)
 
     for url in urls:
-        download_file('https://www.youtube.com'+url, base)
+        try:
+            download_file('https://www.youtube.com'+url, base)
+        except :
+            print('failed to download')
+            pass
+        
         sleep(3)
 
 main()
